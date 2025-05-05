@@ -2,8 +2,12 @@
 
 ## To block
 
-   block <strong>site-name</strong>
+   block -a <strong>site-URL</strong>
 
 ## To unblock
 
-   unblock <strong>site-name</strong>
+   block -r <strong>site-URL</strong>
+
+## List blocked URLs
+
+   block -l
