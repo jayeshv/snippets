@@ -1,13 +1,17 @@
-# To quickly block and unblock a website
+## To quickly block and unblock a website
 
-## To block
+### Installation
 
-   block -a <strong>site-URL</strong>
+   pip install site_block
 
-## To unblock
+### To block
 
-   block -r <strong>site-URL</strong>
+   block -a <strong>URL</strong>
 
-## List blocked URLs
+### To unblock
+
+   block -r <strong>URL</strong>
+
+### List blocked URLs
 
    block -l

@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "site_block"
+version = "0.0.1"
+authors = [
+  { name="Jayesh Velayudhan", email="jayesh.mail@gmail.com" },
+]
+description = "A simple website blocker"
+readme = "README.md"
+requires-python = ">=3.8"
+license = "BSD-3-Clause"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: Unix",
+]
+[project.scripts]
+block = "site_block:block"
+[project.urls]
+Homepage = "https://github.com/jayeshv/snippets/tree/main/site-block"

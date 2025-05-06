@@ -1,21 +1,13 @@
-#!/usr/bin/python3
-
 import argparse
-import sys
 import os
+import sys
 
 PATTERN_START = "# Managed by SiteBlocker SECTION-START\n"
 PATTERN_END = "# Managed by SiteBlocker SECTION-END\n"
 PATTERN = "127.0.0.1    {}\n"
 HOSTS = "/etc/hosts"
 
-"""
-- block -a <url>
-- block -r <url>
-- block -l
-- block -rn <number>
-"""
-if __name__ == "__main__":
+def block():
     parser = argparse.ArgumentParser(
         prog='SiteBlocker',
         description='Manage your blocked websites')
@@ -26,10 +18,12 @@ if __name__ == "__main__":
     # group.add_argument('-r', '--number')
     args = parser.parse_args()
     if os.geteuid() != 0:
-        raise AttributeError("Plase run this program as root")
+        print("Plase run this program as root")
+        sys.exit()
 
     if not args:
-        raise AttributeError("Plase provide an argument")
+        print("Plase provide an argument")
+        sys.exit()
 
     with open(HOSTS, "r") as f:
         lines = f.readlines()
@@ -54,14 +48,16 @@ if __name__ == "__main__":
     elif args.add is not None:
         to_add = PATTERN.format(args.add)
         if to_add in blocked:
-            raise ValueError("The given site is already in the blocked list")
+            print("The given site is already in the blocked list")
+            sys.exit()
         blocked = blocked + [to_add]
         dirty = True
 
     elif args.remove is not None:
         to_remove = PATTERN.format(args.remove)
         if to_remove not in blocked:
-            raise ValueError("The given site is not in the blocked list")
+            print("The given site is not in the blocked list")
+            sys.exit()
         blocked.pop(blocked.index(to_remove))
         dirty = True
 
